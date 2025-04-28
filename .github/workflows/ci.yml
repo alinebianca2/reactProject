@@ -11,27 +11,40 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout código
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: "18"
 
-      - name: Install dependencies
+      - name: Instalar dependências
         run: npm install
 
-      - name: Run build
+      - name: Buildar aplicação
         run: npm run build
 
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: false 
+          tags: meuapp:latest
 
   discorc:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
 
-      - name: Run Discord Webhook
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Enviar notificação para Discord
         uses: johnnyhuy/actions-discord-git-webhook@main
         with:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+

@@ -7,6 +7,7 @@ import Login from './login'
 describe('Login Component', () => {
   test('deve exibir mensagem de sucesso ao inserir email e senha corretos', () => {
     render(<Login />);
+    //comment
 
     fireEvent.change(screen.getByPlaceholderText('Email'), {
       target: { value: 'eduardo.lino@pucpr.br' },

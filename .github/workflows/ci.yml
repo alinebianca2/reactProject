@@ -26,14 +26,6 @@ jobs:
       - name: Rodar testes
         run: npm test
 
-      - name: Build apenas da imagem Docker
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./Dockerfile
-          push: false
-          tags: meuapp:latest
-
       - name: Enviar notificação para Discord
         uses: johnnyhuy/actions-discord-git-webhook@main
         with:

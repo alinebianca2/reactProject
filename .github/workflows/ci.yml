@@ -25,6 +25,7 @@ jobs:
 
       - name: Rodar testes
         run: npm test
+        
 
       - name: Enviar notificação para Discord
         uses: johnnyhuy/actions-discord-git-webhook@main
